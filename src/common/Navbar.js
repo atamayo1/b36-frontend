@@ -1,11 +1,12 @@
 import React, { useState} from 'react';
 import { Link } from 'react-router-dom';
+import authenticate from "../utils/authenticate";
 // <Navbar title="Pos"></Navbar>
 function Navbar(props){
     const [ title ] = useState(props.title);
-
+    const { isAuthenticted, payload } = authenticate();
     return(
-        < nav className = "navbar navbar-expand-lg navbar-light fixed-top"
+        <nav className = "navbar navbar-expand-lg navbar-light fixed-top"
               id = "mainNav" >
             <div className="container">
                 <Link className="navbar-brand" to="/">{title}</Link>
@@ -18,6 +19,25 @@ function Navbar(props){
                         <li className="nav-item">
                             <Link className="nav-link" to="/">Home</Link>
                         </li>
+                        { isAuthenticted ? (<>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/me">Hola {payload.first_name}</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/">Create Post</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/logout">Logout</Link>
+                            </li>
+                        </>) : (<>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/signup">Register</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/login">Login</Link>
+                            </li>
+                        </>) }
+
                     </ul>
                 </div>
             </div>

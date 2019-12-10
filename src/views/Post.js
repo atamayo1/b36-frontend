@@ -13,7 +13,7 @@ const  SINGLE_POST = gql`
         }
     }
     
-`
+`;
 
 function Post({match}) {
     const { id } = match.params;

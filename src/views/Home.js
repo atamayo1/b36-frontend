@@ -17,7 +17,7 @@ const ALL_POST = gql`
         }
     }
 
-`
+`;
 
 function Home() {
     const {data, loading, error} = useQuery(ALL_POST);
